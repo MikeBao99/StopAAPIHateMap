@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import firebase from './test_firebase.js';
+import logo from '../logo.svg';
+import '../App.css';
+import firebase from '../test_firebase.js';
 
-class App extends Component {
-  constructor() {
+class Form extends Component {
+  constructor(props) {
     super();
+    this.location = props.position
     this.state = {
       currentItem: '',
       username: '',
@@ -23,7 +24,7 @@ class App extends Component {
     e.preventDefault();
     const itemsRef = firebase.database().ref('items');
     const item = {
-      title: this.state.currentItem,
+      location: this.location,
       user: this.state.username
     }
     itemsRef.push(item);
@@ -58,16 +59,15 @@ class App extends Component {
       <div className='app'>
         <header>
             <div className="wrapper">
-              <h1>Fun Food Friends</h1>
+              <h1>Report an Incident</h1>
                              
             </div>
         </header>
         <div className='container'>
           <section className='add-item'>
                 <form onSubmit={this.handleSubmit}>
-                  <input type="text" name="username" placeholder="What's your name?" onChange={this.handleChange} value={this.state.username} />
-                  <input type="text" name="currentItem" placeholder="What are you bringing?" onChange={this.handleChange} value={this.state.currentItem} />
-                  <button>Add Item</button>
+                  <input type="text" name="username" placeholder="What was your incident?" onChange={this.handleChange} value={this.state.username} />
+                  <button>Report</button>
                 </form>
           </section>
           <section className='display-item'>
@@ -91,4 +91,4 @@ class App extends Component {
     );
   }
 }
-export default App;
+export default Form;

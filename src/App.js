@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import Maps from './components/Maps';
+import Form from './components/Form'
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import {Component, Fragment} from 'react';
 
@@ -25,6 +26,7 @@ function App() {
       </header>
       
         <Maps />
+        <Form />
       </>
   );
 }

@@ -1,5 +1,5 @@
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-
+import Form from './Form'
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -21,7 +21,7 @@ function Maps() {
 	    	/>
 	    	<Marker position={position}>
 	      		<Popup>
-	        		A pretty CSS3 popup. <br /> Easily customizable.
+	        		<Form position={position} />
 	      		</Popup>
 	    	</Marker>
 	  	</MapContainer>
