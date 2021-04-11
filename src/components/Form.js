@@ -16,6 +16,7 @@ class Form extends Component {
     this.state = {
       currentItem: '',
       username: '',
+      gender: '',
       items: [],
       position: []
     };
@@ -41,7 +42,8 @@ class Form extends Component {
     	console.log(this.position)
     const item = {
       position: this.position,
-      user: this.state.username
+      user: this.state.username,
+      gender: this.state.gender,
     }
     itemsRef.push(item);
     this.setState({
@@ -74,7 +76,7 @@ class Form extends Component {
   	const pos = this.position
     return (
       <div className='app'>
-        <header>
+              <header>
             <div className="wrapper">
               <h1>Report an Incident</h1>
                              
@@ -83,7 +85,16 @@ class Form extends Component {
         <div className='container'>
           <section className='add-item'>
                 <form onSubmit={this.handleSubmit}>
-                  <input type="text" name="username" placeholder="What was your incident?" onChange={this.handleChange} value={this.state.username} />
+                  <input type="text" name="username" placeholder="What was your incident?" onChange={this.handleChange} value={this.state.username} ></input>
+                  <br></br>
+                  <input type="radio" id="male" name="gender" onChange={this.handleChange} value="Sexual"></input>
+					<label for="male">Sexual</label><br></br>
+					<input type="radio" id="female" name="gender" onChange={this.handleChange} value="Verbal"></input>
+					<label for="female">Verbal</label><br></br>
+					<input type="radio" id="other" name="gender" onChange={this.handleChange} value="Violent"></input>
+					<label for="other">Violent</label>
+
+<br></br>
                   <button>Report</button>
                 </form>
           </section>
@@ -97,8 +108,8 @@ class Form extends Component {
                     if((item.position.lat == this.position.lat) && (item.position.lng == this.position.lng)) {  
                       return (
                         <li key={item.id}>
-                          <p>brought by: {item.user}
-                            <button onClick={() => this.removeItem(item.id)}>Remove Item</button>
+                          <p>{item.user}
+                            
                           </p>
                         </li>
                     )}

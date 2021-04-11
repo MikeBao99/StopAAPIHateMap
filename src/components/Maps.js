@@ -24,7 +24,7 @@ class Maps extends Component {
   }
   
   componentDidMount() {
-    const itemsRef = firebase.database().ref('markers');
+    const itemsRef = firebase.database().ref('items');
     itemsRef.on('value', (snapshot) => {
       let items = snapshot.val();
       let newState = [];
@@ -51,7 +51,7 @@ class Maps extends Component {
 
   	return (
     <MapContainer
-      center={[50.5, 30.5]}
+      center={[33.9806, -117.3755]}
       zoom={13}
       style={{ height: "100vh" }}
       scrollWheelZoom={false}
