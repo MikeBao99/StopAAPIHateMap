@@ -12,6 +12,8 @@ import L from "leaflet";
 import icon from "./constants";
 import "./styles.css";
 import AddMarkerToClick from './addmarker.js';
+import Form from './Form'
+import firebase from '../test_firebase.js';
 
 class Maps extends Component {
   constructor(props) {
@@ -21,6 +23,26 @@ class Maps extends Component {
     };
   }
   
+  componentDidMount() {
+    const itemsRef = firebase.database().ref('markers');
+    itemsRef.on('value', (snapshot) => {
+      let items = snapshot.val();
+      let newState = [];
+      for (let item in items) {
+        newState.push(
+          {
+          	position: items[item].position
+          }
+        );
+      }
+      console.log(newState)
+      this.setState({
+        data: newState
+      });
+      console.log(this.state.data)
+    });
+  }
+
 
   render() {
 
@@ -32,7 +54,7 @@ class Maps extends Component {
       center={[50.5, 30.5]}
       zoom={13}
       style={{ height: "100vh" }}
-      scrollWheelZoom={true}
+      scrollWheelZoom={false}
       // whenReady={(map) => {
       //   console.log(map);
       //   map.target.on("click", function (e) {
@@ -46,7 +68,16 @@ class Maps extends Component {
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
+		{this.state.data.map((marker) => {if('position' in marker){ return (
+			<Marker position={marker.position}>
+            	<Popup>
+            		<Form position={marker.position}/>
+            	</Popup>
+          </Marker>)}
+		})}
+
       <AddMarkerToClick/>
+
     </MapContainer>
   )}
 }

@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from "react";
+import React, { Component, useEffect, useState, newState } from "react";
 import {
   MapContainer,
   TileLayer,
@@ -12,7 +12,7 @@ import L from "leaflet";
 import icon from "./constants";
 import "./styles.css";
 import Form from './Form.js'
-
+import firebase from '../test_firebase.js';
 import icon1 from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 
@@ -31,12 +31,23 @@ L.Marker.prototype.options.icon = DefaultIcon;
 function AddMarkerToClick(props) {
 
     const [markers, setMarkers] = useState([]);
+    const markersRef = firebase.database().ref('markers');
+
+    markersRef.on('value', (snapshot) => {
+      let items = snapshot.val();
+      let newState = [];
+      for (let item in items) {
+        newState.push({position: item});
+      }
+      // setMarkers(newState);
+    });
+    
 
     const map = useMapEvents({
       click(e) {
         const newMarker = e.latlng
         setMarkers([...markers, newMarker]);
-
+        markersRef.push({position: newMarker})
       },
     })
 
