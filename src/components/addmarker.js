@@ -13,7 +13,7 @@ import icon from "./constants";
 import "./styles.css";
 import Form from './Form.js'
 import firebase from '../test_firebase.js';
-import icon1 from 'leaflet/dist/images/marker-icon.png';
+import icon1 from './img/marker-icon-grey.png'
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 
 let DefaultIcon = L.icon({

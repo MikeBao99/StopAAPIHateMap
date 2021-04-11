@@ -14,6 +14,11 @@ import "./styles.css";
 import AddMarkerToClick from './addmarker.js';
 import Form from './Form'
 import firebase from '../test_firebase.js';
+import icon1 from './img/marker-icon-violet.png'
+import icon2 from './img/marker-icon-red.png'
+import icon3 from './img/marker-icon-orange.png'
+import icon4 from './img/marker-icon-grey.png'
+import iconShadow from 'leaflet/dist/images/marker-shadow.png'
 
 class Maps extends Component {
   constructor(props) {
@@ -31,7 +36,8 @@ class Maps extends Component {
       for (let item in items) {
         newState.push(
           {
-          	position: items[item].position
+          	position: items[item].position,
+          	gender: items[item].gender
           }
         );
       }
@@ -68,8 +74,28 @@ class Maps extends Component {
         attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-		{this.state.data.map((marker) => {if('position' in marker){ return (
-			<Marker position={marker.position}>
+		{this.state.data.map((marker) => {if('position' in marker){ 
+			console.log(marker)
+			if(marker.gender == "Sexual") {
+				var icon = icon1
+			} else if(marker.gender == "Violent") {
+				var icon = icon2
+			} else if(marker.gender == "Verbal"){
+				var icon = icon3
+			} else {
+				var icon = icon4
+			}
+
+			let DefaultIcon = L.icon({
+			    iconUrl: icon,
+			    shadowUrl: iconShadow,
+			    iconSize: [25,41], 
+			    iconAnchor: [12,41]
+			});
+
+
+			return (
+			<Marker position={marker.position} icon={DefaultIcon}>
             	<Popup>
             		<Form position={marker.position}/>
             	</Popup>

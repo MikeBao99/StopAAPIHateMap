@@ -60,7 +60,8 @@ class Form extends Component {
         newState.push({
           id: item,
           position: items[item].position,
-          user: items[item].user
+          user: items[item].user,
+          gender: items[item].gender
         });
       }
       this.setState({
@@ -108,7 +109,7 @@ class Form extends Component {
                     if((item.position.lat == this.position.lat) && (item.position.lng == this.position.lng)) {  
                       return (
                         <li key={item.id}>
-                          <p>{item.user}
+                          <p>({item.gender}) {item.user}
                             
                           </p>
                         </li>
