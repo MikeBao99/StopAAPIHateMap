@@ -5,16 +5,27 @@ import firebase from '../test_firebase.js';
 
 class Form extends Component {
   constructor(props) {
-    super();
-    this.location = props.position
+    super(props);
+    if('position' in this.props) {
+    	this.position = this.props.position;
+    }
+    else{
+    	this.position = [0,0]
+    }
     this.state = {
       currentItem: '',
       username: '',
       items: []
-    }
+    };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.getPosition = this.getPosition.bind(this);
   }
+
+  getPosition() {
+  	return this.position
+  }
+
   handleChange(e) {
     this.setState({
       [e.target.name]: e.target.value
@@ -23,8 +34,10 @@ class Form extends Component {
   handleSubmit(e) {
     e.preventDefault();
     const itemsRef = firebase.database().ref('items');
+        	console.log('i hate everyone')
+    	console.log(this.position)
     const item = {
-      location: this.location,
+      position: this.position,
       user: this.state.username
     }
     itemsRef.push(item);
@@ -41,7 +54,7 @@ class Form extends Component {
       for (let item in items) {
         newState.push({
           id: item,
-          title: items[item].title,
+          position: items[item].position,
           user: items[item].user
         });
       }
@@ -55,6 +68,7 @@ class Form extends Component {
     itemRef.remove();
   }
   render() {
+  	const pos = this.position
     return (
       <div className='app'>
         <header>
@@ -74,14 +88,17 @@ class Form extends Component {
               <div className="wrapper">
                 <ul>
                   {this.state.items.map((item) => {
+                  	console.log(item);
+                  	console.log('help')
+                  	console.log(this.getPosition());
+                    if(item.position[0] == this.position[0] && item.position[0] == this.position[0]) {
                     return (
                       <li key={item.id}>
-                        <h3>{item.title}</h3>
                         <p>brought by: {item.user}
                           <button onClick={() => this.removeItem(item.id)}>Remove Item</button>
                         </p>
                       </li>
-                    )
+                    )}
                   })}
                 </ul>
               </div>

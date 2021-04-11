@@ -1,32 +1,56 @@
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import Form from './Form'
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React, { Component } from "react";
+import {
+  MapContainer,
+  TileLayer,
+  useMapEvents,
+  MapConsumer
+} from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+import L from "leaflet";
+import icon from "./constants";
+import "./styles.css";
 
-function Maps() {
-	const position = [51.505, -0.09]
-	return (
-		<div>
-	    	<link
-	  			rel="stylesheet"
-	  			href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
-	  			integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-	  			crossorigin=""
-		/>
+class Maps extends Component {
+  constructor(props) {
+  	super(props)
+  	this.markers = [[0,0]]
+  	console.log(this.markers)
+  }
 
-		<MapContainer center={position} zoom={13} scrollWheelZoom={false}>
-	    	<TileLayer
-	      		attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-	      		url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-	    	/>
-	    	<Marker position={position}>
-	      		<Popup>
-	        		<Form position={position} />
-	      		</Popup>
-	    	</Marker>
-	  	</MapContainer>
-	  </div>
-  	)
+  render() {
+
+  	return (
+    <MapContainer
+      center={[50.5, 30.5]}
+      zoom={13}
+      style={{ height: "100vh" }}
+      scrollWheelZoom={false}
+      // whenReady={(map) => {
+      //   console.log(map);
+      //   map.target.on("click", function (e) {
+      //     const { lat, lng } = e.latlng;
+      //     L.marker([lat, lng], { icon }).addTo(map.target);
+      //   });
+      // }}
+    >
+      <TileLayer
+        attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+      />
+      <MapConsumer>
+        {(map) => {
+          console.log("map center:", map.getCenter());
+          map.on("click", function (e) {
+            const { lat, lng } = e.latlng;
+            console.log('hemlo world')
+            console.log(this)
+            this.markers.push([lat, lng])
+            console.log(this.markers)
+          });
+          return null;
+        }}
+      </MapConsumer>
+    </MapContainer>
+  )}
 }
-
 export default Maps;
