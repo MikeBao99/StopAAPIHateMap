@@ -6,6 +6,7 @@ import firebase from '../test_firebase.js';
 class Form extends Component {
   constructor(props) {
     super(props);
+    console.log(props)
     if('position' in this.props) {
     	this.position = this.props.position;
     }
@@ -15,7 +16,8 @@ class Form extends Component {
     this.state = {
       currentItem: '',
       username: '',
-      items: []
+      items: [],
+      position: []
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -28,7 +30,8 @@ class Form extends Component {
 
   handleChange(e) {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
+      position: this.props
     });
   }
   handleSubmit(e) {
@@ -88,16 +91,16 @@ class Form extends Component {
               <div className="wrapper">
                 <ul>
                   {this.state.items.map((item) => {
-                  	console.log(item);
-                  	console.log('help')
-                  	console.log(this.getPosition());
-                    if(item.position[0] == this.position[0] && item.position[0] == this.position[0]) {
-                    return (
-                      <li key={item.id}>
-                        <p>brought by: {item.user}
-                          <button onClick={() => this.removeItem(item.id)}>Remove Item</button>
-                        </p>
-                      </li>
+                    console.log(item.position[0] == this.position[0]);
+                      console.log(item.position)
+                      console.log(this.position);
+                    if((item.position.lat == this.position.lat) && (item.position.lng == this.position.lng)) {  
+                      return (
+                        <li key={item.id}>
+                          <p>brought by: {item.user}
+                            <button onClick={() => this.removeItem(item.id)}>Remove Item</button>
+                          </p>
+                        </li>
                     )}
                   })}
                 </ul>
