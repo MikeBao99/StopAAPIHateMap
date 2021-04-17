@@ -4,6 +4,7 @@ import Search from "./Search"
 import { Component } from "react"
 import Container from "react-bootstrap/Container"
 import Row from 'react-bootstrap/Row'
+import Col from "react-bootstrap/Col"
 
 class ReportMap extends Component {
     constructor(props) {
@@ -26,8 +27,16 @@ class ReportMap extends Component {
             <div>
                 <OurNav />
                 <Container >
+
                     <Row style={{ margin: '4vmin 0 0 0' }}>
-                        <Search parentCallback={this.handleCallback} />
+                        <Col md={2.5}>
+                            <p>Click the map to file a report</p>
+                        </Col>
+                        <Col md={3}>
+                            <Search parentCallback={this.handleCallback} />
+                        </Col>
+
+
                     </Row>
                     <div style={{ marginTop: '2vmin', marginBottom: '5vmin' }}>
                         <Maps position={this.state.position} />

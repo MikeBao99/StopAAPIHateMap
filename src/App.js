@@ -7,6 +7,7 @@ import Home from './components/Home';
 // import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import SignUp from './components/SignUp';
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/report" component={ReportMap} />
+        <Route exact path="/signup" component={SignUp} />
       </Switch>
     </Router>
   )

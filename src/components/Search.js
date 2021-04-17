@@ -9,8 +9,10 @@ import { Container } from 'react-bootstrap'
 class Search extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { address: '',
-    gmapsLoaded: false, };
+    this.state = {
+      address: '',
+      gmapsLoaded: false,
+    };
   }
 
 
@@ -20,7 +22,7 @@ class Search extends React.Component {
     })
   }
 
-  componentDidMount () {
+  componentDidMount() {
     window.initMap = this.initMap
     const gmapScriptEl = document.createElement(`script`)
     gmapScriptEl.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyBMFlDYj6I4eYl8m3OcWj8J5g78oyT1Hz0&libraries=places&callback=initMap`
@@ -42,49 +44,50 @@ class Search extends React.Component {
   };
 
   render() {
-    if(this.state.gmapsLoaded) {
-    return (
-      <Container>
-      <PlacesAutocomplete
-        value={this.state.address}
-        onChange={this.handleChange}
-        onSelect={this.handleSelect}
-      >
-        {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-          <div>
-            <input
-              {...getInputProps({
-                placeholder: 'Search Places ...',
-                className: 'location-search-input',
-              })}
-            />
-            <div className="autocomplete-dropdown-container">
-              {loading && <div>Loading...</div>}
-              {suggestions.map(suggestion => {
-                const className = suggestion.active
-                  ? 'suggestion-item--active'
-                  : 'suggestion-item';
-                // inline style for demonstration purpose
-                const style = suggestion.active
-                  ? { backgroundColor: '#fafafa', cursor: 'pointer' }
-                  : { backgroundColor: '#ffffff', cursor: 'pointer' };
-                return (
-                  <div
-                    {...getSuggestionItemProps(suggestion, {
-                      className,
-                      style,
-                    })}
-                  >
-                    <span>{suggestion.description}</span>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        )}
-      </PlacesAutocomplete>
-      </Container>
-    );}
+    if (this.state.gmapsLoaded) {
+      return (
+        <Container>
+          <PlacesAutocomplete
+            value={this.state.address}
+            onChange={this.handleChange}
+            onSelect={this.handleSelect}
+          >
+            {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+              <div>
+                <input
+                  {...getInputProps({
+                    placeholder: 'search places ...',
+                    className: 'location-search-input',
+                  })}
+                />
+                <div className="autocomplete-dropdown-container">
+                  {loading && <div>Loading...</div>}
+                  {suggestions.map(suggestion => {
+                    const className = suggestion.active
+                      ? 'suggestion-item--active'
+                      : 'suggestion-item';
+                    // inline style for demonstration purpose
+                    const style = suggestion.active
+                      ? { backgroundColor: '#fafafa', cursor: 'pointer' }
+                      : { backgroundColor: '#ffffff', cursor: 'pointer' };
+                    return (
+                      <div
+                        {...getSuggestionItemProps(suggestion, {
+                          className,
+                          style,
+                        })}
+                      >
+                        <span>{suggestion.description}</span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
+          </PlacesAutocomplete>
+        </Container>
+      );
+    }
     else {
       return null;
     }
