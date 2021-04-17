@@ -2,6 +2,8 @@ import Maps from "./Maps"
 import OurNav from "./OurNav"
 import Search from "./Search"
 import { Component } from "react"
+import Container from "react-bootstrap/Container"
+import Row from 'react-bootstrap/Row'
 
 class ReportMap extends Component {
     constructor(props) {
@@ -23,8 +25,14 @@ class ReportMap extends Component {
         return (
             <div>
                 <OurNav />
-                <Search parentCallback={this.handleCallback} />
-                <Maps position={this.state.position} />
+                <Container >
+                    <Row style={{ margin: '4vmin 0 0 0' }}>
+                        <Search parentCallback={this.handleCallback} />
+                    </Row>
+                    <Row style={{ margin: '2vmin 0 10vmin 0' }}>
+                        <Maps position={this.state.position} />
+                    </Row>
+                </Container>
             </div>
         );
     }
