@@ -18,7 +18,8 @@ class Form extends Component {
       username: '',
       gender: '',
       items: [],
-      position: []
+      position: [],
+      time: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -30,25 +31,37 @@ class Form extends Component {
   }
 
   handleChange(e) {
+    const nowDate = new Date()
+    const month = nowDate.getMonth() + 1
+    const day = nowDate.getDate()
+    const year = nowDate.getFullYear()
+    const hour = nowDate.getHours()
+    var minute = nowDate.getMinutes()
+    if (minute < 10) {
+        minute = '0' + minute
+    }
+    
+    const date = hour + ":" + minute + ' ' + month + '/' + day + '/' + year
     this.setState({
       [e.target.name]: e.target.value,
-      position: this.props
+      position: this.props,
+      time: date
     });
   }
   handleSubmit(e) {
     e.preventDefault();
     const itemsRef = firebase.database().ref('items');
-        	console.log('i hate everyone')
-    	console.log(this.position)
     const item = {
       position: this.position,
       user: this.state.username,
       gender: this.state.gender,
+      time: this.state.time
     }
     itemsRef.push(item);
     this.setState({
       currentItem: '',
-      username: ''
+      username: '',
+      time: ''
     });
   }
   componentDidMount() {
@@ -61,7 +74,8 @@ class Form extends Component {
           id: item,
           position: items[item].position,
           user: items[item].user,
-          gender: items[item].gender
+          gender: items[item].gender,
+          time: items[item].time
         });
       }
       this.setState({
@@ -103,12 +117,10 @@ class Form extends Component {
               <div className="wrapper">
                 <ul>
                   {this.state.items.map((item) => {
-                    console.log(item.position[0] == this.position[0]);
-                      console.log(item.position)
-                      console.log(this.position);
                     if((item.position.lat == this.position.lat) && (item.position.lng == this.position.lng)) {  
                       return (
                         <li key={item.id}>
+                          <p>Submitted: {item.time}</p>
                           <p>({item.gender}) {item.user}
                             
                           </p>
