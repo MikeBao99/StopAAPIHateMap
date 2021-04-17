@@ -1,17 +1,12 @@
 import React from 'react'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
-import Navbar from 'react-bootstrap/Navbar'
 import Button from 'react-bootstrap/Button'
 import Col from "react-bootstrap/Col"
-import { Link } from 'react-router-dom'
 const MY_DOMAIN = 'http://localhost:3000'
 
 const Home = () => {
-    const rowStyle = { height: '70px', margin: '15vmin ' };
-    const buttonStyle = { margin: '30vmin' }
-    const columnStyle = { margin: '15vmin 0 0 0' }
-    const logoStyle = { color: 'teal' }
+    const rowStyle = { height: '20vmin', margin: '15vmin ' };
 
     return (
 
@@ -19,9 +14,9 @@ const Home = () => {
             <Container>
                 <Row className="justify-content-md-center" style={rowStyle}>
                     <Col >
-                        <img style={{ height: '50vmin', margin: '0 0 5vmin 0' }} className='srcimg' src={`${MY_DOMAIN}/empower.png`}></img>
+                        <img style={{ height: '50vmin', margin: '0 0 5vmin 0' }} src={`${MY_DOMAIN}/empower.png`} alt="logo"></img>
                     </Col>
-                    <Col style={{ marginTop: '5vmin' }}>
+                    <Col style={{ marginTop: '3.5vmin' }}>
                         <h2>welcome to</h2>
                         <h1 style={{ fontSize: '10vmin', color: 'crimson' }}>EMPOWER</h1>
                         <div style={{ marginTop: '5vmin', marginLeft: '2vmin' }}>
@@ -41,9 +36,7 @@ const Home = () => {
                     </Col>
 
                 </Row>
-                <div style={{ marginTop: '30vmin', marginLeft: '75vmin' }}>
 
-                </div>
 
 
             </Container>

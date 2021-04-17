@@ -29,7 +29,9 @@ class ReportMap extends Component {
                     <Row style={{ margin: '4vmin 0 0 0' }}>
                         <Search parentCallback={this.handleCallback} />
                     </Row>
-                    <Maps position={this.state.position} />
+                    <div style={{ marginTop: '2vmin', marginBottom: '5vmin' }}>
+                        <Maps position={this.state.position} />
+                    </div>
                 </Container>
             </div>
         );
