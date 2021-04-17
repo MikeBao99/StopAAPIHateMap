@@ -25,16 +25,6 @@ class Search extends React.Component {
     document.querySelector(`body`).insertAdjacentElement(`beforeend`, gmapScriptEl)
   }
 
-render () {
-  return (
-    <div>
-      {this.state.gmapsLoaded && (
-        <PlacesAutocomplete />
-      )}
-    </div>
-  )
-}
-
   handleChange = address => {
     this.setState({ address });
   };
@@ -44,6 +34,9 @@ render () {
       .then(results => getLatLng(results[0]))
       .then(latLng => console.log('Success', latLng))
       .catch(error => console.error('Error', error));
+    geocodeByAddress(address)
+      .then(results => getLatLng(results[0]))
+      .then(latLng => this.props.parentCallback(latLng))
   };
 
   render() {

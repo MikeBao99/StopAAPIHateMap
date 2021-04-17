@@ -25,9 +25,19 @@ class Maps extends Component {
   	super(props)
     this.state = {
       data: [],
+      center: this.props.position,
+      map: null
     };
+    this.setState({center: this.props.position})
   }
-  
+
+	componentWillReceiveProps(props) {
+	  	this.setState({position: props.position});
+	    const {map} = this.state;
+	    if (map) map.flyTo(props.position);
+	}
+
+
   componentDidMount() {
     const itemsRef = firebase.database().ref('items');
     itemsRef.on('value', (snapshot) => {
@@ -41,11 +51,9 @@ class Maps extends Component {
           }
         );
       }
-      console.log(newState)
       this.setState({
-        data: newState
+        data: newState,
       });
-      console.log(this.state.data)
     });
   }
 
@@ -57,10 +65,11 @@ class Maps extends Component {
 
   	return (
     <MapContainer
-      center={[33.9806, -117.3755]}
+      center={[this.state.center.lat, this.state.center.lng]}
       zoom={13}
       style={{ height: "100vh" }}
       scrollWheelZoom={false}
+      whenCreated={map => this.setState({ map })}
       // whenReady={(map) => {
       //   console.log(map);
       //   map.target.on("click", function (e) {
@@ -75,7 +84,6 @@ class Maps extends Component {
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
 		{this.state.data.map((marker) => {if('position' in marker){ 
-			console.log(marker)
 			if(marker.gender == "Sexual") {
 				var icon = icon1
 			} else if(marker.gender == "Violent") {
