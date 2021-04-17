@@ -12,7 +12,7 @@ const OurNav = () => {
         <div>
             <Navbar bg="light" expand="lg">
                 <Container>
-                    <Navbar.Brand style={{ color: 'crimson' }} href="/">App Name</Navbar.Brand>
+                    <Navbar.Brand style={{ color: 'crimson' }} href="/">Empower</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto">
