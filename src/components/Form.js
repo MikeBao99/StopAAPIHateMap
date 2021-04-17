@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import logo from '../logo.svg';
 import '../App.css';
 import firebase from '../test_firebase.js';
+import Row from "react-bootstrap/Row"
 import Form from "react-bootstrap/Form"
+import Button from 'react-bootstrap/Button'
 
 class FileForm extends Component {
   constructor(props) {
@@ -97,16 +99,18 @@ class FileForm extends Component {
       <div className='app'>
         <header>
           <div className="wrapper">
-            <h4>report an incident</h4>
-
+            <Row style={{ marginLeft: '1vmin', marginRight: '1vmin' }} className='justify-content-md-center'>
+              <h4>report an incident</h4>
+            </Row>
           </div>
         </header>
         <div className='container'>
           <section className='add-item'>
-            <Form onSubmit={this.handleSubmit}>
-              <input style={{ marginLeft: '0', marginBottom: '1vmin', width: "20vmin" }} type="text" name="username" placeholder="What happened?" onChange={this.handleChange} value={this.state.username} ></input>
-              <br></br>
-              <input style={{ padding: '1vmin' }} type="radio" id="male" name="gender" onChange={this.handleChange} value="Sexual"></input>
+            <form onSubmit={this.handleSubmit}>
+              <Form.Group controlId="username">
+                <Form.Control onChange={this.handleChange} value={this.state.username} type="text" name="username" placeholder="What happened?" />
+              </Form.Group>
+              <input type="radio" id="male" name="gender" onChange={this.handleChange} value="Sexual"></input>
               <label for="male">Sexual</label><br></br>
               <input type="radio" id="female" name="gender" onChange={this.handleChange} value="Verbal"></input>
               <label for="female">Verbal</label><br></br>
@@ -114,8 +118,8 @@ class FileForm extends Component {
               <label for="other">Violent</label>
 
               <br></br>
-              <button>Report</button>
-            </Form>
+              <Button size="sm" variant="danger">Report</Button>
+            </form>
           </section>
           <section className='display-item'>
             <div className="wrapper">
@@ -123,12 +127,14 @@ class FileForm extends Component {
                 {this.state.items.map((item) => {
                   if ((item.position.lat == this.position.lat) && (item.position.lng == this.position.lng)) {
                     return (
-                      <li key={item.id}>
+                      // <li key={item.id}>
+                      <div>
                         <p>Submitted: {item.time}</p>
                         <p>({item.gender}) {item.user}
 
                         </p>
-                      </li>
+                      </div>
+                      // </li>
                     )
                   }
                 })}
