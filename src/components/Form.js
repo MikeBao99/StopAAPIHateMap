@@ -55,13 +55,15 @@ class Form extends Component {
       position: this.position,
       user: this.state.username,
       gender: this.state.gender,
-      time: this.state.time
+      time: this.state.time,
+      state: '0'
     }
     itemsRef.push(item);
     this.setState({
       currentItem: '',
       username: '',
-      time: ''
+      time: '',
+      state: '0'
     });
   }
   componentDidMount() {
@@ -73,6 +75,7 @@ class Form extends Component {
         newState.push({
           id: item,
           position: items[item].position,
+          state: '0',
           user: items[item].user,
           gender: items[item].gender,
           time: items[item].time
