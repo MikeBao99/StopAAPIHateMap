@@ -3,6 +3,8 @@ import PlacesAutocomplete, {
   geocodeByAddress,
   getLatLng,
 } from 'react-places-autocomplete';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Container } from 'react-bootstrap'
 
 class Search extends React.Component {
   constructor(props) {
@@ -42,6 +44,7 @@ class Search extends React.Component {
   render() {
     if(this.state.gmapsLoaded) {
     return (
+      <Container>
       <PlacesAutocomplete
         value={this.state.address}
         onChange={this.handleChange}
@@ -80,6 +83,7 @@ class Search extends React.Component {
           </div>
         )}
       </PlacesAutocomplete>
+      </Container>
     );}
     else {
       return null;
