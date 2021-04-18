@@ -14,6 +14,7 @@ const OurNav = () => {
                         <Nav className="mr-auto">
                             <Nav.Link href="/report">Report</Nav.Link>
                             <Nav.Link href="/request">Request</Nav.Link>
+                            <Nav.Link href="/">Data</Nav.Link>
                         </Nav>
                     </Navbar.Collapse>
                     {/* <Button className='ml-auto addpostbutton' inline variant="outline-info" href="/addpost">+</Button> */}
