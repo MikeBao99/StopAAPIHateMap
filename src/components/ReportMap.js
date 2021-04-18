@@ -11,8 +11,8 @@ class ReportMap extends Component {
         super(props)
         this.state = {
             position: {
-                lat: 33.9806,
-                lng: -117.3755,
+                lat: 37.8719,
+                lng: -122.2585,
             }
         }
     }
