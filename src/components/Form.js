@@ -9,7 +9,14 @@ import Form from 'react-bootstrap/Form'
 class FileForm extends Component {
   constructor(props) {
     super(props);
+    console.log('propssss')
     console.log(props)
+    if ('parentCallback' in this.props) {
+    	this.parentCallback = this.props.parentCallback
+    }
+    else {
+    	this.parentCallback = () => this.forceUpdate();
+    }
     if ('position' in this.props) {
       this.position = this.props.position;
     }
@@ -68,6 +75,9 @@ class FileForm extends Component {
       time: '',
       state: '0'
     });
+    if('parentCallback' in this.props) {
+    	this.props.parentCallback(null)
+    }
   }
   componentDidMount() {
     const itemsRef = firebase.database().ref('items');

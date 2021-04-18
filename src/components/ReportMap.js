@@ -19,8 +19,6 @@ class ReportMap extends Component {
 
     handleCallback = (childData) => {
         this.setState({ position: childData })
-        console.log('ChildData')
-        console.log(this.state.position)
     }
     render() {
         return (
