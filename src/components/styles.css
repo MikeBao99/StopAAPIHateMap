@@ -6,3 +6,11 @@
 body {
   margin: 0px;
 }
+
+.custom-btn {
+  background: crimson;
+  color: white;
+  border: 2px solid crimson;
+  border-radius: 3px;
+  padding: 5px 10px;
+}

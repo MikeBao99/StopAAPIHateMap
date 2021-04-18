@@ -118,7 +118,7 @@ class FileForm extends Component {
               <label for="other">Violent</label>
 
               <br></br>
-              <Button size="sm" variant="danger">Report</Button>
+              <button className='custom-btn'>Report</button>
             </form>
           </section>
           <section className='display-item'>
@@ -127,14 +127,12 @@ class FileForm extends Component {
                 {this.state.items.map((item) => {
                   if ((item.position.lat == this.position.lat) && (item.position.lng == this.position.lng)) {
                     return (
-                      // <li key={item.id}>
-                      <div>
+                      <li key={item.id}>
                         <p>Submitted: {item.time}</p>
                         <p>({item.gender}) {item.user}
 
                         </p>
-                      </div>
-                      // </li>
+                      </li>
                     )
                   }
                 })}
