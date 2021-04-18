@@ -3,8 +3,8 @@ import logo from '../logo.svg';
 import '../App.css';
 import firebase from '../test_firebase.js';
 import Row from "react-bootstrap/Row"
-import Form from "react-bootstrap/Form"
-import Button from 'react-bootstrap/Button'
+import Button from "react-bootstrap/Button"
+import Form from 'react-bootstrap/Form'
 
 class FileForm extends Component {
   constructor(props) {
@@ -123,20 +123,16 @@ class FileForm extends Component {
           </section>
           <section className='display-item'>
             <div className="wrapper">
-              <ul>
-                {this.state.items.map((item) => {
-                  if ((item.position.lat == this.position.lat) && (item.position.lng == this.position.lng)) {
-                    return (
-                      <li key={item.id}>
-                        <p>Submitted: {item.time}</p>
-                        <p>({item.gender}) {item.user}
-
-                        </p>
-                      </li>
-                    )
-                  }
-                })}
-              </ul>
+              {this.state.items.map((item) => {
+                if ((item.position.lat == this.position.lat) && (item.position.lng == this.position.lng)) {
+                  return (
+                    <div>
+                      <p>Submitted: {item.time}</p>
+                      <p>({item.gender}) {item.user}</p>
+                    </div>
+                  )
+                }
+              })}
             </div>
           </section>
         </div>
