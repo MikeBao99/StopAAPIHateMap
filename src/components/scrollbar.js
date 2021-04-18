@@ -61,7 +61,7 @@ const GetRatesFromAPI = () => {
   // A placeholder is needed, to tell react-ticker, that width and height might have changed
   // It uses MutationObserver internally
   return rates ? (
-    <p style={{ whiteSpace: "nowrap", fontFamily: 'Courier New, Times, Serif', fontWeight: '700' }}> {" || " + newrates.join(" || ")} </p>
+    <p style={{ whiteSpace: "nowrap", fontFamily: 'Helvetica, Times, Serif', fontWeight: '300' }}> {" || " + newrates.join(" || ")} </p>
   ) : (
       <p style={{ visibility: "hidden" }}>Placeholder</p>
     );

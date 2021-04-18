@@ -71,7 +71,7 @@ class Maps extends Component {
           <MapContainer
             center={[this.state.center.lat, this.state.center.lng]}
             zoom={13}
-            style={{ height: "100vh" }}
+            style={{ height: "75vmin" }}
             scrollWheelZoom={false}
             whenCreated={map => this.setState({ map })}
           // whenReady={(map) => {
