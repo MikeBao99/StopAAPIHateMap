@@ -31,6 +31,9 @@ class Maps extends Component {
       map: null
     };
     this.setState({ center: this.props.position })
+    this.handleCallbackForm = () => {
+        this.forceUpdate()
+    }
   }
 
   componentWillReceiveProps(props) {
@@ -39,6 +42,9 @@ class Maps extends Component {
     if (map) map.flyTo(props.position);
   }
 
+  handleCallbackForm = () => {
+        this.forceUpdate()
+    }
 
   componentDidMount() {
     const itemsRef = firebase.database().ref('items');
@@ -64,7 +70,7 @@ class Maps extends Component {
 
 
 
-
+  	const handleCallbackForm = this.handleCallbackForm
     return (
       <div>
         <div>
@@ -106,12 +112,10 @@ class Maps extends Component {
                   iconSize: [25, 41],
                   iconAnchor: [12, 41]
                 });
-
-
                 return (
                   <Marker position={marker.position} icon={DefaultIcon}>
                     <Popup>
-                      <FileForm position={marker.position} />
+                      <FileForm parentCallback={handleCallbackForm} position={marker.position} />
                     </Popup>
                   </Marker>)
               }
