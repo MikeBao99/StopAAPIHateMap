@@ -9,6 +9,15 @@ import { useState } from 'react'
 
 const SignUp = () => {
     const [value, setValue] = useState('')
+    const [ZIPcode, setZIPcode] = useState('')
+
+    const onZIPcode = ({ target: { value } }) => {
+        var temp = ZIPcode
+        temp = value
+        setZIPcode(temp)
+        console.log(temp)
+
+    }
 
     const handleSubmit = () => {
 
@@ -16,30 +25,33 @@ const SignUp = () => {
     return (
         <div>
             <OurNav />
-            <Container>
-                <h5 style={{ marginTop: '3vmin' }}>Thanks for signing up!</h5>
-                <p>Enter your phone number and city to be notified when someone in your area needs help</p>
-                <Row>
-                    <Col md={3}>
+            <Container className='justify-content-md-center'>
+                <Container style={{ marginLeft: '40vmin', marginTop: '10vmin' }}>
+                    <h5 style={{ marginTop: '3vmin' }}>Thanks for signing up!</h5>
+                    <p style={{ marginBottom: '0vmin' }}>Enter your phone number and city to be notified when someone in</p>
+                    <p>your area or when a hate crime happens near you.</p>
+                    <Row >
+                        <Col md={3}>
 
-                        <Input
-                            country="US"
-                            placeholder="Enter phone number"
-                            value={value}
-                            onChange={setValue} />
-                    </Col>
+                            <Input
+                                country="US"
+                                placeholder="Enter phone number"
+                                value={value}
+                                onChange={setValue} />
+                        </Col>
 
-                </Row>
-                <Row style={{ marginTop: '1vmin' }}>
-                    <Col md={3}>
+                    </Row>
+                    <Row style={{ marginTop: '1vmin' }}>
+                        <Col md={3}>
 
-                        <input
-                            placeholder="Enter ZIP code"
-                            value={value}
-                            onChange={setValue} />
-                    </Col>
-                </Row>
-                <Button style={{ marginTop: '3vmin' }} onClick={handleSubmit} variant='danger'>submit</Button>
+                            <input
+                                placeholder="Enter ZIP code"
+                                value={ZIPcode}
+                                onChange={onZIPcode} />
+                        </Col>
+                    </Row>
+                    <Button style={{ marginTop: '3vmin' }} onClick={handleSubmit} variant='danger'>submit</Button>
+                </Container>
             </Container>
         </div>
     )

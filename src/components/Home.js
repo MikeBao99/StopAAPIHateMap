@@ -26,7 +26,7 @@ const Home = () => {
                             </Row>
                             <Row style={{ marginTop: '2vmin' }}>
                                 <Button style={{ marginRight: '1vmin' }} href="/request" variant='danger'>Request</Button>
-                                <h3> help</h3>
+                                <h3> assistance</h3>
                             </Row>
                             <Row style={{ marginTop: '2vmin' }}>
                                 <Button style={{ marginRight: '1vmin' }} href="/signup" variant='outline-danger'>Sign Up</Button>

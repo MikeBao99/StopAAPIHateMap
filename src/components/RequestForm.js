@@ -36,7 +36,8 @@ class RequestForm extends Component {
             urgency: '',
             phoneNumber: '',
             position: [],
-            time: ''
+            time: '',
+            active: true,
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -81,11 +82,16 @@ class RequestForm extends Component {
             currentItem: '',
             request: '',
             time: '',
-            state: 'California'
+            state: 'California',
+            active: false,
         });
         if ('parentCallback' in this.props) {
             this.props.parentCallback(null)
         }
+
+        alert("Thank you for submitting a request! A community member should be in touch with you shortly.")
+
+
     }
     componentDidMount() {
         const requestsRef = firebase.database().ref('requests');
