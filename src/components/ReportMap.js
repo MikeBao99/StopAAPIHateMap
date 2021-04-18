@@ -27,16 +27,16 @@ class ReportMap extends Component {
                 <Container >
 
                     <Row style={{ margin: '4vmin 0 0 0' }}>
-                        <Col md={2.5}>
+                        <Col style={{ margin: '1vmin 0 0 0' }} md={2.5}>
                             <p>Click the map to file a report</p>
                         </Col>
-                        <Col md={3}>
+                        <Col style={{ margin: '1vmin 0 0 0' }} md={3}>
                             <Search parentCallback={this.handleCallback} />
                         </Col>
 
 
                     </Row>
-                    <div style={{ marginTop: '2vmin', marginBottom: '5vmin' }}>
+                    <div style={{ marginTop: '0.5vmin', marginBottom: '5vmin' }}>
                         <Maps position={this.state.position} />
                     </div>
                 </Container>

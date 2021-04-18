@@ -5,12 +5,14 @@ import icon from "./constants";
 import "./styles.css";
 import firebase from '../test_firebase.js';
 import Ticker from 'react-ticker';
+const MY_DOMAIN = 'http://localhost:3000'
 
 
 
 const GetRatesFromAPI = () => {
   const [rates, setRates] = useState("");
   useEffect(() => {
+    console.log('useeffect')
     async function fetchData() {
       const itemsRef = firebase.database().ref('items');
       itemsRef.on('value', (snapshot) => {
@@ -62,7 +64,33 @@ const GetRatesFromAPI = () => {
   // A placeholder is needed, to tell react-ticker, that width and height might have changed
   // It uses MutationObserver internally
   return rates ? (
-    <p style={{ whiteSpace: "nowrap", fontFamily: 'Helvetica, Times, Serif', fontWeight: '300' }}> {" || " + newrates.join(" || ")} </p>
+
+    // {
+    //   newrates.map((newrate, i) => {
+    //     // console.log(task, i)
+    //     // return (
+    //     <li style={{
+    //       display: "flex", alignItems: 'center', flexDirection: 'row', listStyleType: 'none'
+    //     }}>
+    //       <div>
+    //         <img style={{ height: '2vmin', margin: '0 0 5vmin 0', marginTop: '2vmin' }} src={`${MY_DOMAIN}/red-square.png`} alt="logo"></img>
+    //       </div>
+    //       <p style={{ whiteSpace: "nowrap", fontFamily: 'Helvetica, Times, Serif', fontWeight: '300' }}> {"  " + newrate} </p>
+    //     </li >
+
+
+    //     // )
+    //   })
+    // }
+    <div style={{
+      display: "flex", alignItems: 'center', flexDirection: 'row'
+    }}>
+      {/* <div>
+        <img style={{ height: '2vmin', margin: '0 0 5vmin 0', marginTop: '2vmin' }} src={`${MY_DOMAIN}/red-square.png`} alt="logo"></img>
+      </div> */}
+      <p style={{ whiteSpace: "nowrap", fontFamily: 'Helvetica, Times, Serif', fontWeight: '300' }}> {"||  " + newrates.join(" || ")} </p>
+    </div >
+
   ) : (
       <p style={{ visibility: "hidden" }}>Placeholder</p>
     );
