@@ -12,9 +12,8 @@ const MY_DOMAIN = 'http://localhost:3000'
 const GetRatesFromAPI = () => {
   const [rates, setRates] = useState("");
   useEffect(() => {
-    console.log('useeffect')
     async function fetchData() {
-      const itemsRef = firebase.database().ref('items');
+      const itemsRef = firebase.database().ref('/items');
       itemsRef.on('value', (snapshot) => {
         let items = snapshot.val();
         let newState = [];
@@ -27,6 +26,7 @@ const GetRatesFromAPI = () => {
               user: items[item].user,
               state: items[item].state
             }
+
           );
         }
         setRates(newState);
@@ -47,16 +47,19 @@ const GetRatesFromAPI = () => {
   let newrates = []
   for (var i = 0; i < rates.length; i++) {
     var time = rates[i]['time']
-    if (time.slice(6) == today) {
+    console.log(time, today)
+    if (time.slice(6,) == today || time.slice(5,) == today) {
       if (time[2] == ':') {
         if (Math.abs(Number(time.slice(0, 2)) - Number(hour)) <= 1) {
           newrates.push("\"" + rates[i]['user'] + "\"" + ' reported at time ' + rates[i]['time'] + ' in ' + rates[i]['state'])
         }
       }
       else {
+        console.log(time)
         if (Math.abs(Number(time.slice(0, 1)) - Number(hour)) <= 1) {
           newrates.push("\"" + rates[i]['user'] + "\"" + ' reported at time ' + rates[i]['time'] + ' in ' + rates[i]['state'])
         }
+      // newrates.push("\"" + rates[i]['user'] + "\"" + ' reported at time ' + rates[i]['time'] + ' in ' + rates[i]['state'])
       }
     }
   }
