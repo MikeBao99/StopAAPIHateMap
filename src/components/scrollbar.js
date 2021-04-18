@@ -22,7 +22,8 @@ const GetRatesFromAPI = () => {
               position: items[item].position,
               gender: items[item].gender,
               time: items[item].time,
-              user: items[item].user
+              user: items[item].user,
+              state: items[item].state
             }
           );
         }
@@ -47,12 +48,12 @@ const GetRatesFromAPI = () => {
     if (time.slice(6) == today) {
       if (time[2] == ':') {
         if (Math.abs(Number(time.slice(0, 2)) - Number(hour)) <= 1) {
-          newrates.push(rates[i]['user'] + ' reported at time ' + rates[i]['time'])
+          newrates.push(rates[i]['user'] + ' reported at time ' + rates[i]['time'] + ' in ' + rates[i]['state'])
         }
       }
       else {
         if (Math.abs(Number(time.slice(0, 1)) - Number(hour)) <= 1) {
-          newrates.push(rates[i]['user'] + ' reported at time ' + rates[i]['time'])
+          newrates.push(rates[i]['user'] + ' reported at time ' + rates[i]['time'] + ' in ' + rates[i]['state'])
         }
       }
     }
