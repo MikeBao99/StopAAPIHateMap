@@ -66,14 +66,14 @@ class FileForm extends Component {
       user: this.state.username,
       gender: this.state.gender,
       time: this.state.time,
-      state: '0'
+      state: 'Calfornia'
     }
     itemsRef.push(item);
     this.setState({
       currentItem: '',
       username: '',
       time: '',
-      state: '0'
+      state: 'California'
     });
     if('parentCallback' in this.props) {
     	this.props.parentCallback(null)
@@ -88,7 +88,7 @@ class FileForm extends Component {
         newState.push({
           id: item,
           position: items[item].position,
-          state: '0',
+          state: 'California',
           user: items[item].user,
           gender: items[item].gender,
           time: items[item].time
