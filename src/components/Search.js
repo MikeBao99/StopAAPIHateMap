@@ -54,7 +54,7 @@ class Search extends React.Component {
           >
             {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
               <div>
-                <input
+                <input style={{ height: '3vmin' }}
                   {...getInputProps({
                     placeholder: 'search places ...',
                     className: 'location-search-input',

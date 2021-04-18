@@ -18,7 +18,7 @@ const OurNav = () => {
                         </Nav>
                     </Navbar.Collapse>
                     {/* <Button className='ml-auto addpostbutton' inline variant="outline-info" href="/addpost">+</Button> */}
-                    <Button href="/signup" className='ml-auto' inline variant="outline-danger" title="+">Sign Up</Button>
+                    <Button href="/signup" className='ml-auto' inline variant="outline-danger" title="Sign Up">Sign Up</Button>
 
                 </Container>
             </Navbar>
