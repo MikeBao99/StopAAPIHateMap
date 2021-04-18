@@ -8,6 +8,7 @@ import Home from './components/Home';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import SignUp from './components/SignUp';
+import Request from './components/Request'
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
         <Route exact path="/" component={Home} />
         <Route exact path="/report" component={ReportMap} />
         <Route exact path="/signup" component={SignUp} />
+        <Route exact path="/request" component={Request} />
       </Switch>
     </Router>
   )
