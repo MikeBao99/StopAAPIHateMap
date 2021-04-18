@@ -50,12 +50,12 @@ const GetRatesFromAPI = () => {
     if (time.slice(6) == today) {
       if (time[2] == ':') {
         if (Math.abs(Number(time.slice(0, 2)) - Number(hour)) <= 1) {
-          newrates.push(rates[i]['user'] + ' reported at time ' + rates[i]['time'] + ' in ' + rates[i]['state'])
+          newrates.push("\"" + rates[i]['user'] + "\"" + ' reported at time ' + rates[i]['time'] + ' in ' + rates[i]['state'])
         }
       }
       else {
         if (Math.abs(Number(time.slice(0, 1)) - Number(hour)) <= 1) {
-          newrates.push(rates[i]['user'] + ' reported at time ' + rates[i]['time'] + ' in ' + rates[i]['state'])
+          newrates.push("\"" + rates[i]['user'] + "\"" + ' reported at time ' + rates[i]['time'] + ' in ' + rates[i]['state'])
         }
       }
     }

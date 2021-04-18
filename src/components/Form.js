@@ -66,7 +66,7 @@ class FileForm extends Component {
       user: this.state.username,
       gender: this.state.gender,
       time: this.state.time,
-      state: 'Calfornia'
+      state: 'California'
     }
     itemsRef.push(item);
     this.setState({
