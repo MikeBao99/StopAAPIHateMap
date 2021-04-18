@@ -126,10 +126,10 @@ class FileForm extends Component {
               {this.state.items.map((item) => {
                 if ((item.position.lat == this.position.lat) && (item.position.lng == this.position.lng)) {
                   return (
-                    <div>
+                    <li style={{ listStyleType: 'none' }} key={item.id}>
                       <p>Submitted: {item.time}</p>
                       <p>({item.gender}) {item.user}</p>
-                    </div>
+                    </li>
                   )
                 }
               })}
